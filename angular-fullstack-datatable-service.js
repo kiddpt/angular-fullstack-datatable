@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('ptDatatable')
+    angular.module('ptDatatable', [])
         .factory('angularFullstackDatatabeService', function($http, socket) {
 
             var angularFullstackDatatabeService = {
