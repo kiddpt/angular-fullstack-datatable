@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('ptDatatable', [])
-        .factory('angularFullstackDatatabeService', function($http, socket) {
+        .factory('angularFullstackDatatableService', function($http, socket) {
 
             var angularFullstackDatatabeService = {
                 wrap: function(s) {
@@ -23,10 +23,10 @@
                             error: false,
                             loading: false,
                             params: {
-                                limit: 10,
-                                offset: 0,
+                                limit: s.defaultLimit || 10,
+                                offset: s.defaultOffset || 0,
                                 keyword: '',
-                                order: '-dateCreated'
+                                order: s.defaultOrder || '-dateCreated'
                             },
                             getPages: function() {
                                 if (this.totalRows) {
