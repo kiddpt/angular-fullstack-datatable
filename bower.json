@@ -1,0 +1,25 @@
+{
+  "name": "angular-fullstack-datatable-service",
+  "version": "0.0.0",
+  "authors": [
+    "Kidd Tapel <kidd@promotexter.com>"
+  ],
+  "description": "Angular JS module for datatable service using angular-fullstack mongoose and socket support.",
+  "main": "angular-fullstack-datatable-service.js",
+  "keywords": [
+    "angular",
+    "fullstack",
+    "datatable",
+    "service",
+    "wrapper"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/kiddpt/angular-fullstack-datatable-service",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
