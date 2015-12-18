@@ -26,7 +26,7 @@
                                 limit: s.defaultLimit || 10,
                                 offset: s.defaultOffset || 0,
                                 keyword: '',
-                                order: s.defaultOrder || '-dateCreated'
+                                order: s.defaultOrder || '-createdAt'
                             },
                             getPages: function() {
                                 if (this.totalRows) {
