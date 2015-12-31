@@ -26,7 +26,8 @@
                                 limit: s.defaultLimit || 10,
                                 offset: s.defaultOffset || 0,
                                 keyword: '',
-                                order: s.defaultOrder || '-createdAt'
+                                order: s.defaultOrder || '-createdAt',
+                                socket: s.socket || false
                             },
                             getPages: function() {
                                 if (this.totalRows) {
@@ -114,7 +115,9 @@
 
                                 // list.data = [];
                                 list.loading = true;
-                                //socket.unsyncUpdates(resourcePath.split('/').pop().replace(/s$/, ''), list, list.fixStats);
+                                
+                                if(this.params.socket)
+                                   socket.unsyncUpdates(resourcePath.split('/').pop().replace(/s$/, ''), list, list.fixStats);
 
                                 $http({
                                     method: 'GET',
@@ -126,8 +129,8 @@
                                         list.data = response.data;
                                         list.totalRows = parseInt(response.headers('Total-rows'));
 
-                                        if (list.params.offset === 0 && !list.params.keyword) {
-                                            //socket.syncUpdates(resourcePath.split('/').pop().replace(/s$/, ''), list, list.fixStats);
+                                        if (list.params.offset === 0 && !list.params.keyword && this.params.socket == true) {
+                                            socket.syncUpdates(resourcePath.split('/').pop().replace(/s$/, ''), list, list.fixStats);
                                         }
 
                                         list.updateStats();
