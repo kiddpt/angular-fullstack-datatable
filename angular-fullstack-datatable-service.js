@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('ptDatatable', [])
-        .factory('angularFullstackDatatableService', function($http) {
+        .factory('angularFullstackDatatableService', function($http, socket) {
 
             var angularFullstackDatatabeService = {
                 wrap: function(s) {
@@ -22,6 +22,7 @@
                             totalPages: 0,
                             error: false,
                             loading: false,
+
                             params: {
                                 limit: s.defaultLimit || 10,
                                 offset: s.defaultOffset || 0,
@@ -115,9 +116,12 @@
 
                                 // list.data = [];
                                 list.loading = true;
-                                
+
+                                // console.log(this, list);
                                 if(list.params.socket)
+                                {
                                    socket.unsyncUpdates(resourcePath.split('/').pop().replace(/s$/, ''), list, list.fixStats);
+                                }
 
                                 $http({
                                     method: 'GET',
@@ -129,7 +133,7 @@
                                         list.data = response.data;
                                         list.totalRows = parseInt(response.headers('Total-rows'));
 
-                                        if (list.params.offset === 0 && !list.params.keyword && list.params.socket == true) {
+                                        if (list.params.offset === 0 && !list.params.keyword && list.params.socket) {
                                             socket.syncUpdates(resourcePath.split('/').pop().replace(/s$/, ''), list, list.fixStats);
                                         }
 
