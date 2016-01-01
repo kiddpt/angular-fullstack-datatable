@@ -116,7 +116,7 @@
                                 // list.data = [];
                                 list.loading = true;
                                 
-                                if(this.params.socket)
+                                if(list.params.socket)
                                    socket.unsyncUpdates(resourcePath.split('/').pop().replace(/s$/, ''), list, list.fixStats);
 
                                 $http({
@@ -129,7 +129,7 @@
                                         list.data = response.data;
                                         list.totalRows = parseInt(response.headers('Total-rows'));
 
-                                        if (list.params.offset === 0 && !list.params.keyword && this.params.socket == true) {
+                                        if (list.params.offset === 0 && !list.params.keyword && list.params.socket == true) {
                                             socket.syncUpdates(resourcePath.split('/').pop().replace(/s$/, ''), list, list.fixStats);
                                         }
 
